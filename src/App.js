@@ -16,27 +16,31 @@ background-image: url(${background});
 background-size: cover;
 height: 100vh;
 width: 100vw;
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 `;
 
 export default class App extends Component {
 
     state = {
-        location: {
-            name: mockData.location.name,
-            region: mockData.location.region,
-            country: mockData.location.country
-        }
+        location: {},
+        current: {}
+    }
 
+    setWeather = () => {
+        this.setState({location: mockData.location, current: mockData.current})
     }
 
     render() {
-
+        
         const contextValue = {
-            location: {
-                name: this.state.location.name,
-                region: this.state.location.region,
-                country: this.state.location.country
-            }
+            location: this.state.location,
+            current: this.state.current,
+            setWeather: this.setWeather
         }
 
         return (

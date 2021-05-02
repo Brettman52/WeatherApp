@@ -6,12 +6,14 @@ const WeatherHeader = styled.header`
     font-size: 50px;
     margin-left: 100px;
 
-
 @media (max-width: 768px) {
     font-size: 25px;
     display: flex;
     justify-content: center;
     margin-left: 0px;
+    position: relative;
+    top: 10px;
+
 }
 `;
 
@@ -21,7 +23,7 @@ export default class Header extends Component {
         return (
             <div>
                 <WeatherHeader>
-                    <span style={{marginTop:"10px"}}>Weather on demand</span>
+                  Weather on demand
                 </WeatherHeader>
             </div>
         )

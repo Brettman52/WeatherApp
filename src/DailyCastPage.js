@@ -1,26 +1,20 @@
 import React, {Component} from 'react'
+import DailyCast from './DailyCast'
 import styled from 'styled-components'
 
-const DickButt = styled.img `
-
-@media (max-width: 768px) {
-    height: 350px;
-    width: 350px;
- 
-}
-    height: 1000px;
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+const CastHeading = styled.header`
+    position: relative;
+    top: 10px;
 `;
+
 
 export default class DailyCastPage extends Component {
 
     render() {
         return (
             <div>
-                <DickButt src="https://i.imgur.com/etjgJ2D.jpg" alt="dickbutt"/>
+              <CastHeading>Current weather</CastHeading>
+                <DailyCast/>
             </div>
         )
     }

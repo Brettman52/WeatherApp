@@ -1,12 +1,10 @@
 import React from 'react';
 
-const WeatherContext = React.createContext({
-    location: {
-        name:{},
-        region:{},
-        country:{}
-    },
 
-  })
-  
-  export default WeatherContext
+const WeatherContext = React.createContext({
+    location: {},
+    current: {},
+    setWeather: () => {}
+})
+
+export default WeatherContext
