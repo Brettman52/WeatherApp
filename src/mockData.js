@@ -11,7 +11,7 @@ export const mockData = {
     },
     "current": {
         "last_updated_epoch": 1619451900,
-        "last_updated": "2021-04-26 10:45",
+        "last_updated": "2021-04-26 13:45",
         "temp_c": 13.8,
         "temp_f": 56.8,
         "is_day": 1,

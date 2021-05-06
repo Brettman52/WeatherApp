@@ -17,10 +17,6 @@ background-size: cover;
 height: 100vh;
 width: 100vw;
 
-* {
-    margin: 0px;
-    padding: 0px;
-}
 
 `;
 
@@ -33,6 +29,10 @@ export default class App extends Component {
 
     setWeather = () => {
         this.setState({location: mockData.location, current: mockData.current})
+    }
+
+    componentDidMount(){
+        this.setWeather()
     }
 
     render() {

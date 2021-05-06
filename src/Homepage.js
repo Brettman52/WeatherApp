@@ -33,9 +33,6 @@ export default class Homepage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this
-            .context
-            .setWeather();
 
         this
             .props
