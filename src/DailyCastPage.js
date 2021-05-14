@@ -19,6 +19,8 @@ export default class DailyCastPage extends Component {
     static contextType = WeatherContext;
 
     render() {
+        console.log(this.props.history)
+
         return (
             <div>
                 <CastHeading>

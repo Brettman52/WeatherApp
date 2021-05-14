@@ -31,21 +31,73 @@ export default class Homepage extends Component {
 
     static contextType = WeatherContext;
 
+    state = {
+        search: "",
+        error: ""
+    }
+
+
+
+    controlSearch = (search) => {
+        this.setState({
+            search,
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
+        // API Key: 366f8b17c2784407b7e141220212604
 
-        this
-            .props
-            .history
-            .push('/daily');
+        if (this.state.search === "") {
+            alert("Enter a search to continue.")
+        } else {
+            const base_url = "https://api.weatherapi.com/v1/forecast.json";
+
+            function formatQueryParams(params) {
+                const queryItems = Object
+                    .keys(params)
+                    .map((key) => `${key}=${params[key]}`);
+                return queryItems.join("&");
+            }
+
+            const params = {
+                q: this.state.search,
+                key: "366f8b17c2784407b7e141220212604"
+            };
+
+            const queryString = formatQueryParams(params);
+            const url = encodeURI(base_url + "?" + queryString);
+
+            console.log(url);
+
+            const options = {
+                method: "GET"
+            };
+
+            fetch(url, options).then((response) => {
+                if (!response.ok) {
+                    throw new Error("Something went wrong, please try again later.");
+                }
+                return response;
+            }).then((response) => response.json()).then((data) => {
+                this.context.setWeather(data);
+                this.props.history.push('/daily');
+                this.context.searchInit();
+            }).catch((err) => {
+                this.setState({error: err.message});
+            });
+        }
+
     }
 
     render() {
+
+
         return (
             <div>
                 <Header/>
                 <CityForm onSubmit={this.handleSubmit}>
-                    <CityInput/>
+                    <CityInput onChange={e => this.controlSearch(e.target.value)}/>
                     <SubmitButton type="submit">
                         GO
                     </SubmitButton>

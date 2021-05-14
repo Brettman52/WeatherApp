@@ -1,6 +1,5 @@
 import './App.css';
 import React, {Component} from 'react'
-import {mockData} from './mockData';
 import background from './background.jpg'
 import styled from 'styled-components'
 import {Route, Switch} from 'react-router-dom'
@@ -16,23 +15,29 @@ background-image: url(${background});
 background-size: cover;
 height: 100vh;
 width: 100vw;
-
-
 `;
 
 export default class App extends Component {
 
     state = {
         location: {},
-        current: {}
+        current: {},
+        forecast: {},
+        initiated: false,
     }
 
-    setWeather = () => {
-        this.setState({location: mockData.location, current: mockData.current})
+    setWeather = (data) => {
+        this.setState({
+            location: data.location, 
+            current: data.current,
+            forecast: data.forecast,
+        })
     }
 
-    componentDidMount(){
-        this.setWeather()
+    searchInit = () => {
+        this.setState({
+            initiated: true,
+        })
     }
 
     render() {
@@ -40,17 +45,20 @@ export default class App extends Component {
         const contextValue = {
             location: this.state.location,
             current: this.state.current,
-            setWeather: this.setWeather
+            forecast: this.state.forecast,
+            initiated: this.state.initiated,
+            setWeather: this.setWeather,
+            searchInit: this.searchInit,
         }
 
         return (
             <Wrap>
+                <WeatherContext.Provider value={contextValue}>
                 <Switch>
-                    <WeatherContext.Provider value={contextValue}>
-                        <Route exact path='/' component={Homepage}/>
-                        <Route path='/daily' component={DailyCastPage}/>
-                    </WeatherContext.Provider>
+                    <Route exact path='/' component={Homepage}/>
+                    <Route path= '/daily' component={(this.state.initiated === true) ? DailyCastPage : Homepage}/>
                 </Switch>
+                </WeatherContext.Provider>
             </Wrap>
         )
     }

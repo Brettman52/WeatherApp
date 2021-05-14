@@ -41,7 +41,7 @@ const AreaContainer = styled.div`
 const Temp = styled.div`
     position: absolute;
     top: 40px;
-    left: 25px;
+    left: 20px;
     font-size: 40px;
     font-weight: bold;
 `;
@@ -53,10 +53,23 @@ const Condition = styled.div`
     
 `;
 
+const ConditionIcon = styled.img`
+    position: absolute;
+    left: 75%;
+    top: 25%;
+`;
+
+const HighAndLow = styled.div`
+    position: absolute;
+    left: 76%;
+    top: 70%;
+`;
+
 export default class DailyCast extends Component {
 
     static contextType = WeatherContext;
 
+    // Extract only the time from the JSON response in a 12-hour time format
     getLastUpdated = (timeDate) => {
         const timeArray = timeDate.split("");
         const timeOnlyArr = [];
@@ -70,21 +83,35 @@ export default class DailyCast extends Component {
 
         return moment(joinedTime, "HH:mm::ss").format("h:mmA");
     }
-
+    // Remove decimal value from temp
     getWholeTemp = (temp) => {
      const newTemp = Math.trunc(temp);
 
         return newTemp;
     }
+    // Remove decimal value from high temp
+    truncHigh = (highTemp) => {
+        const newHighTemp = Math.trunc(highTemp);
+
+        return newHighTemp;
+    }
+    // Remove decimal value from low temp
+    truncLow = (lowTemp) => {
+        const newLowTemp = Math.trunc(lowTemp);
+
+        return newLowTemp;
+    }
+
 
     render() {
         const townName = this.context.location.name;
         const regionName = this.context.location.region;
-        const lastUpdated = this.context.current.last_updated;
+        const lastUpdated = (this.context.current.last_updated === undefined) ? "" : this.getLastUpdated(this.context.current.last_updated);
         const tempInF = this.context.current.temp_f;
-        const conditionText = this.context.current.condition.text;
-      
-
+        const conditionText = (this.context.current.condition === undefined) ? "" : this.context.current.condition.text;
+        const highTemp = (this.context.forecast.forecastday === undefined) ? "" : this.truncHigh(this.context.forecast.forecastday[0].day.maxtemp_f);
+        const lowTemp = (this.context.forecast.forecastday === undefined) ? "" : this.truncLow(this.context.forecast.forecastday[0].day.mintemp_f);
+        const icon = (this.context.current.condition === undefined) ? "" : this.context.current.condition.icon;
 
         return (
             <Wrap>
@@ -96,10 +123,13 @@ export default class DailyCast extends Component {
                 </AreaContainer>
                 <WeatherContainer>
                     <AsOf>
-                        As of {lastUpdated !== undefined && this.getLastUpdated(lastUpdated)} <span style={{fontSize:"12px"}}>(local time)</span>
+                        As of {lastUpdated} <span style={{fontSize:"12px"}}>(local time)</span>
                     </AsOf>
                     <Temp>{tempInF !== undefined && this.getWholeTemp(tempInF)}&#176;<span style={{fontSize:"20px"}}>F</span></Temp>
                     <Condition>{conditionText}</Condition>
+                    <ConditionIcon src={icon}/>
+                    <HighAndLow>{highTemp}&#176;/{lowTemp}&#176;</HighAndLow>
+
                 </WeatherContainer>
             </Wrap>
         )
