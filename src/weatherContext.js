@@ -1,13 +1,53 @@
 import React from 'react';
 
-
 const WeatherContext = React.createContext({
-    location: {},
-    current: {},
-    forecast: {},
-    initiated: false,
+    location: {
+        name: "",
+        region: ""
+    },
+    current: {
+        last_updated: "",
+        temp_f: "",
+        condition: {
+            text: "",
+            icon: ""
+        }
+    },
+    forecast: {
+        forecastday: [
+            {
+                date: "",
+                day: {
+                    maxtemp_f: "",
+                    mintemp_f: "",
+                    condition: {
+                        icon: ""
+                    }
+                }
+            }, {
+                date: "",
+                day: {
+                    maxtemp_f: "",
+                    mintemp_f: "",
+                    condition: {
+                        icon: ""
+                    }
+                }
+            }, {
+                date: "",
+                day: {
+                    maxtemp_f: "",
+                    mintemp_f: "",
+                    condition: {
+                        icon: ""
+                    }
+                }
+            }
+        ]
+    },
     setWeather: () => {},
-    searchInit: () =>{},
+    searchInit: () => {},
+    setCachedWeather: () => {}
 })
 
 export default WeatherContext

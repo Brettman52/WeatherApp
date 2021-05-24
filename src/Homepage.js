@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Header from './Header'
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import WeatherContext from './weatherContext'
@@ -7,7 +6,6 @@ import WeatherContext from './weatherContext'
 const CityForm = styled.form `
     text-align: center;
     margin-top: 28px;
-        
 `;
 
 const CityInput = styled.input `
@@ -23,7 +21,6 @@ const SubmitButton = styled(Button)`
     background-color: ghostwhite;
     opacity: .5;
     margin-left: 2px;
-     
 }
 `;
 
@@ -36,17 +33,15 @@ export default class Homepage extends Component {
         error: ""
     }
 
-
-
     controlSearch = (search) => {
-        this.setState({
-            search,
-        })
+        this.setState({search})
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         // API Key: 366f8b17c2784407b7e141220212604
+
+        sessionStorage.removeItem("data");
 
         if (this.state.search === "") {
             alert("Enter a search to continue.")
@@ -62,13 +57,12 @@ export default class Homepage extends Component {
 
             const params = {
                 q: this.state.search,
+                days: 3,
                 key: "366f8b17c2784407b7e141220212604"
             };
 
             const queryString = formatQueryParams(params);
             const url = encodeURI(base_url + "?" + queryString);
-
-            console.log(url);
 
             const options = {
                 method: "GET"
@@ -80,22 +74,24 @@ export default class Homepage extends Component {
                 }
                 return response;
             }).then((response) => response.json()).then((data) => {
-                this.context.setWeather(data);
-                this.props.history.push('/daily');
-                this.context.searchInit();
+                this
+                    .context
+                    .setWeather(data);
+                this
+                    .props
+                    .history
+                    .push('/current');
+                sessionStorage.setItem("data", JSON.stringify(data))
+                console.log(data);
             }).catch((err) => {
                 this.setState({error: err.message});
             });
         }
-
     }
 
     render() {
-
-
         return (
             <div>
-                <Header/>
                 <CityForm onSubmit={this.handleSubmit}>
                     <CityInput onChange={e => this.controlSearch(e.target.value)}/>
                     <SubmitButton type="submit">

@@ -3,14 +3,12 @@ import styled from 'styled-components'
 
 const WeatherHeader = styled.header `
     color: whitesmoke;
-    font-size: 50px;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    margin-left: 0px;
-    position: relative;
+    font-size: 35px;
+    text-align: center;
     top: 10px;
-
+    margin-bottom: 50px;
+    background-color: rgba(179, 177, 173, .6);
+    padding: 10px;
 `;
 
 export default class Header extends Component {
