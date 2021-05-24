@@ -15,6 +15,14 @@ background-image: url(${background});
 -o-background-size: cover;
 background-size: cover;
 height: 100vh;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black !important;
+}
 `;
 
 export default class App extends Component {
