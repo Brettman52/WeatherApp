@@ -150,7 +150,7 @@ export default class DailyCast extends Component {
                 <WeatherSelector/>
                 <WeatherContainer>
                     <AsOf>
-                        As of {lastUpdated}
+                        As of {lastUpdated}&nbsp;
                         <LocalTime>
                             (local time)</LocalTime>
                     </AsOf>
