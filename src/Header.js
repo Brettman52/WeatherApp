@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 const WeatherHeader = styled.header `
     color: whitesmoke;
@@ -9,6 +10,15 @@ const WeatherHeader = styled.header `
     margin-bottom: 50px;
     background-color: rgba(179, 177, 173, .6);
     padding: 10px;
+    
+    a {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    a:visited {
+        color: whitesmoke;
+    }
 `;
 
 export default class Header extends Component {
@@ -16,7 +26,9 @@ export default class Header extends Component {
         return (
             <div>
                 <WeatherHeader>
-                    Weather on demand
+                    <Link to='/'>
+                        Weather on demand
+                    </Link>
                 </WeatherHeader>
             </div>
         )

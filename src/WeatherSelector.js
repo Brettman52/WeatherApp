@@ -20,6 +20,7 @@ const CastList = styled.div `
         border-radius: 20px;
         height: 100%;
         line-height: 30px;
+        color: black;
     
     }
 
@@ -29,7 +30,6 @@ const CastList = styled.div `
 
     .active {
         background-color: lightblue;
-        color: black;
     }
 `;
 

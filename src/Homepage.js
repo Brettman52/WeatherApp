@@ -12,12 +12,12 @@ const CityInput = styled.input `
     border-radius: 5px;
     opacity: .4;
     margin-top: 10px;
+    font-size: 18px;
 `;
 
 const SubmitButton = styled(Button)`
 && {
-    height: 20px;
-    width: 0px;
+    height: 23px;
     background-color: ghostwhite;
     opacity: .5;
     margin-left: 2px;

@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import background from './background.jpg'
 import styled from 'styled-components'
 import {Route, Switch} from 'react-router-dom'
@@ -15,14 +15,6 @@ background-image: url(${background});
 -o-background-size: cover;
 background-size: cover;
 height: 100vh;
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: black !important;
-}
 `;
 
 export default class App extends Component {
