@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import WeatherContext from './weatherContext'
 import Error from './Error'
+import config from './config'
 
 const CityForm = styled.form `
     text-align: center;
@@ -54,7 +55,7 @@ export default class Homepage extends Component {
         if (this.state.search === "") {
             alert("Enter a search to continue.")
         } else {
-            const base_url = "https://api.weatherapi.com/v1/forecast.json";
+            const base_url = config.API_ENDPOINT;
 
             function formatQueryParams(params) {
                 const queryItems = Object
@@ -66,7 +67,7 @@ export default class Homepage extends Component {
             const params = {
                 q: this.state.search,
                 days: 3,
-                key: process.env.REACT_APP_API_KEY,
+                key: "366f8b17c2784407b7e141220212604",
             };
 
             const queryString = formatQueryParams(params);
