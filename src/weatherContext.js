@@ -3,7 +3,8 @@ import React from 'react';
 const WeatherContext = React.createContext({
     location: {
         name: "",
-        region: ""
+        region: "",
+        country: "",
     },
     current: {
         last_updated: "",
@@ -45,9 +46,11 @@ const WeatherContext = React.createContext({
             }
         ]
     },
+    error: {
+        message: null
+    },
     setWeather: () => {},
-    searchInit: () => {},
-    setCachedWeather: () => {}
+    setCachedWeather: () => {},
 })
 
 export default WeatherContext

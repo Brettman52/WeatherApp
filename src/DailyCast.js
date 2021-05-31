@@ -4,31 +4,29 @@ import styled from 'styled-components'
 import WeatherSelector from './WeatherSelector'
 import Card from '@material-ui/core/Card'
 import Day from './Day'
-
-const Town = styled.h2 `  
-`;
-
-const Region = styled.div `
-    margin-left: 10px;
-`;
-
-const AreaContainer = styled.div `
-   position: relative;
-   top: 1vh;
-   margin-left: 10px;
-   font-size: 18px;
-`;
+import Location from './Location'
 
 const ForecastContainer = styled(Card)`
       && {
     background-color: rgba(232, 226, 226, .9);
     border-radius: 5px;
-    height: 25vh;
+    height: 10rem;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
     min-width: 200px;
+
+    @media (min-width: 650px){
+        margin-left: 50px;
+        margin-right: 50px;
     }
+
+    @media (min-width: 1000px) {
+        margin-left: 200px;
+        margin-right: 200px;
+        height: 14rem;
+    }
+ }
 `;
 
 const ForecastHeader = styled.div `
@@ -39,13 +37,16 @@ const ForecastHeader = styled.div `
     margin-bottom: 15px;
     margin-left: 10%;
     margin-right: 10%;
+
+    @media (min-width: 1000px) {
+        font-size: 25px;
+    }
 `;
 
 const DayContainer = styled.div `
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
 `;
 
 export default class DailyCast extends Component {
@@ -67,8 +68,6 @@ export default class DailyCast extends Component {
     }
 
     render() {
-        const townName = this.context.location.name;
-        const regionName = this.context.location.region;
         const weatherRow = this
             .context
             .forecast
@@ -77,12 +76,7 @@ export default class DailyCast extends Component {
 
         return (
             <div>
-                <AreaContainer>
-                    <Town>
-                        {townName},
-                        <Region>{regionName}</Region>
-                    </Town>
-                </AreaContainer>
+                <Location/>
                 <WeatherSelector/>
                 <ForecastContainer>
                     <ForecastHeader>

@@ -9,24 +9,44 @@ const WeatherContainer = styled.div `
 const Date = styled.div `
     font-size: 14px;
     font-weight: bold;
+
+    @media (min-width: 1000px) {
+        font-size: 20px;
+    }
 `;
 
 const HighTemp = styled.div `
     color: blue;
     font-weight: bolder;
     font-size: 20px;
+    
+    @media (min-width: 1000px) {
+        font-size: 26px;
+    }
+
 `;
 
 const LowTemp = styled.div `
+    @media (min-width: 1000px) {
+        font-size: 20px;
+    }
 `;
 
 const ConditionIcon = styled.img `
     height: 50px;
+
+    @media (min-width: 1000px) {
+        height: 60px;
+        width:60px;
+    }
 `;
 
 const DayContainer = styled.div `
    text-align: center;
+   
+   
 `;
+
 export default class Day extends Component {
 
     static contextType = WeatherContext;
@@ -69,7 +89,6 @@ export default class Day extends Component {
         const lowTemp = this.truncLow(forecastday[id].day.mintemp_f);
         const icon = forecastday[id].day.condition.icon;
 
-        console.log(this.props);
         return (
             <div>
                 <WeatherContainer>

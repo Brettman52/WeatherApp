@@ -15,6 +15,7 @@ background-image: url(${background});
 -o-background-size: cover;
 background-size: cover;
 height: 100vh;
+min-width: 250px;
 `;
 
 export default class App extends Component {
@@ -22,7 +23,8 @@ export default class App extends Component {
     state = {
         location: {
             name: "",
-            region: ""
+            region: "",
+            country: ""
         },
         current: {
             last_updated: "",
@@ -63,11 +65,11 @@ export default class App extends Component {
                     }
                 }
             ]
-        },
+        }
     }
 
     setWeather = (data) => {
-        this.setState({location: data.location, current: data.current, forecast: data.forecast, initiated: true})
+        this.setState({location: data.location, current: data.current, forecast: data.forecast})
     }
 
     render() {

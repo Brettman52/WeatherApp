@@ -19,6 +19,17 @@ const WeatherHeader = styled.header `
     a:visited {
         color: whitesmoke;
     }
+
+    @media (min-width: 650px) {
+
+        a {
+            color: black;
+        }
+
+        a:visited {
+            color: black;
+        }
+    }
 `;
 
 export default class Header extends Component {
@@ -27,7 +38,7 @@ export default class Header extends Component {
             <div>
                 <WeatherHeader>
                     <Link to='/'>
-                        Weather on demand
+                        Weather on Demand
                     </Link>
                 </WeatherHeader>
             </div>
