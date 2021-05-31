@@ -67,7 +67,7 @@ export default class Homepage extends Component {
             const params = {
                 q: this.state.search,
                 days: 3,
-                key: "366f8b17c2784407b7e141220212604",
+                key: config.API_KEY,
             };
 
             const queryString = formatQueryParams(params);
