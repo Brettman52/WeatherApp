@@ -105,6 +105,7 @@ export default class Homepage extends Component {
     }
 
     render() {
+        console.log(process.env)
         return (
             <div>
                 <CityForm onSubmit={this.handleSubmit}>
