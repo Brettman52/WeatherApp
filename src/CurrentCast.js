@@ -99,60 +99,22 @@ export default class DailyCast extends Component {
 
     // Convert extracted time from JSON object to 12-hour format
     getLastUpdated = (timeDate) => {
-        const timeArray = timeDate.split("");
-        const timeOnlyArr = [];
+        const extractedTime = timeDate.split(' ')[1]
 
-        for (let i = 0; i <= 15; i++) {
-            if (i > 10) {
-                timeOnlyArr.push(timeArray[i])
-            }
-        }
-        const joinedTime = timeOnlyArr.join("");
-
-        return moment(joinedTime, "HH:mm::ss").format("h:mmA");
-    }
-    // Remove decimal value from whole temp
-    getWholeTemp = (temp) => {
-        const newTemp = Math.trunc(temp);
-
-        return newTemp;
-    }
-    // Remove decimal value from high temp
-    truncHigh = (highTemp) => {
-        const newHighTemp = Math.trunc(highTemp);
-
-        return newHighTemp;
-    }
-    // Remove decimal value from low temp
-    truncLow = (lowTemp) => {
-        const newLowTemp = Math.trunc(lowTemp);
-
-        return newLowTemp;
-    }
-
-    //Persist weather data in context/state on refresh
-    UNSAFE_componentWillMount() {
-        const savedWeatherData = sessionStorage.getItem("data");
-        const cachedWeather = JSON.parse(savedWeatherData);
-
-        if (!cachedWeather) {
-            return;
-        } else {
-            this
-                .context
-                .setWeather(cachedWeather);
-        }
+        return moment(extractedTime, "HH:mm::ss").format("h:mmA");
     }
 
     // Test code 53646543 to exhibit conditional rendering based on available information
+    // This code will render the following [city, country] instead of [city, state] because 
+    // state info is not available in all countries
 
     render() {
 
         const lastUpdated = this.getLastUpdated(this.context.current.last_updated);
-        const currentTemp = this.getWholeTemp(this.context.current.temp_f);
+        const currentTemp = Math.trunc(this.context.current.temp_f);
         const conditionText = this.context.current.condition.text;
-        const highTemp = this.truncHigh(this.context.forecast.forecastday[0].day.maxtemp_f);
-        const lowTemp = this.truncLow(this.context.forecast.forecastday[0].day.mintemp_f);
+        const highTemp = Math.trunc(this.context.forecast.forecastday[0].day.maxtemp_f);
+        const lowTemp = Math.trunc(this.context.forecast.forecastday[0].day.mintemp_f);
         const icon = this.context.current.condition.icon;
 
         return (

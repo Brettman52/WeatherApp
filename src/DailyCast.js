@@ -54,7 +54,7 @@ export default class DailyCast extends Component {
     static contextType = WeatherContext;
 
     //Persist weather data in context/state on refresh
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         const savedWeatherData = sessionStorage.getItem("data");
         const cachedWeather = JSON.parse(savedWeatherData);
 

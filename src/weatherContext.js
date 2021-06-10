@@ -46,9 +46,7 @@ const WeatherContext = React.createContext({
             }
         ]
     },
-    error: {
-        message: null
-    },
+    searchInit: false,
     setWeather: () => {},
     setCachedWeather: () => {},
 })
