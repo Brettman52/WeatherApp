@@ -45,12 +45,9 @@ export default class Homepage extends Component {
         this.setState({search})
     }
 
-    // Fetch data, handle various errors (if any), and set weather data in state and
-    // in sessionStorage
+    // Fetch data, handle various errors (if any), and set weather search term in in localStorage
     handleSubmit = (e) => {
         e.preventDefault();
-
-        sessionStorage.removeItem("data");
 
         if (this.state.search === "") {
             alert("Enter a search to continue.")
@@ -67,7 +64,7 @@ export default class Homepage extends Component {
             const params = {
                 q: this.state.search,
                 days: 3,
-                key: config.API_KEY,
+                key: config.API_KEY
             };
 
             const queryString = formatQueryParams(params);
@@ -87,14 +84,21 @@ export default class Homepage extends Component {
                 return response;
 
             }).then((response) => response.json()).then((data) => {
+
+                this
+                    .context
+                    .setSearchInit();
                 this
                     .context
                     .setWeather(data);
+
                 this
                     .props
                     .history
                     .push('/current');
-                sessionStorage.setItem("data", JSON.stringify(data))
+                    
+                localStorage.setItem("data", this.state.search)
+
             }).catch((err) => {
                 this.setState({error: err.props});
                 this

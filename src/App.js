@@ -7,6 +7,7 @@ import WeatherContext from './weatherContext'
 import CurrentCastPage from './CurrentCastPage'
 import DailyCastPage from './DailyCastPage'
 import Header from './Header'
+import {LocalDataProvider} from'./LocalDataProvider'
 
 const Wrap = styled.div `
 background-image: url(${background});
@@ -65,18 +66,26 @@ export default class App extends Component {
                     }
                 }
             ]
-        }
+        },
+        searchInit: false
     }
 
     setWeather = (data) => {
-        this.setState({location: data.location, current: data.current, forecast: data.forecast})
+        this.setState({location: data.location, current: data.current, forecast: data.forecast,})
+    }
+
+    setSearchInit = ()=> {
+        this.setState({searchInit: true})
     }
 
     render() {
+
         const contextValue = {
             location: this.state.location,
             current: this.state.current,
             forecast: this.state.forecast,
+            setSearchInit: this.setSearchInit,
+            searchInit: this.state.searchInit,
             setWeather: this.setWeather
         }
 
@@ -84,11 +93,13 @@ export default class App extends Component {
             <Wrap>
                 <Header/>
                 <WeatherContext.Provider value={contextValue}>
+                <LocalDataProvider>
                     <Switch>
                         <Route exact path='/' component={Homepage}/>
                         <Route path='/current' component={CurrentCastPage}/>
                         <Route path='/daily' component={DailyCastPage}/>
                     </Switch>
+                </LocalDataProvider>
                 </WeatherContext.Provider>
             </Wrap>
         )
