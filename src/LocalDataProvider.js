@@ -27,7 +27,6 @@ export class LocalDataProvider extends Component {
 
             const queryString = formatQueryParams(params);
             const url = encodeURI(base_url + "?" + queryString);
-
             const options = {
                 method: "GET"
             };
@@ -36,7 +35,6 @@ export class LocalDataProvider extends Component {
                 if (!response.ok) {
                     throw new Error("Oops! Something went wrong. Please try again later.");
                 }
-
                 return response;
 
             }).then((response) => response.json()).then((data) => {
@@ -48,12 +46,10 @@ export class LocalDataProvider extends Component {
                 this.setState({setData: true})
 
                 localStorage.setItem("data", savedWeatherSearch)
-                console.log(this.context)
 
             }).catch((err) => {
                 this.setState({error: err.props});
             });
-
         }
     }
 

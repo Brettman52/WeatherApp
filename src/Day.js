@@ -9,9 +9,12 @@ const WeatherContainer = styled.div `
 const Date = styled.div `
     font-size: 14px;
     font-weight: bold;
+    margin-right: .5rem;
+    
 
     @media (min-width: 1000px) {
         font-size: 20px;
+        margin-right: .7rem;
     }
 `;
 
@@ -43,8 +46,6 @@ const ConditionIcon = styled.img `
 
 const DayContainer = styled.div `
    text-align: center;
-   
-   
 `;
 
 export default class Day extends Component {
@@ -93,7 +94,8 @@ export default class Day extends Component {
             <div>
                 <WeatherContainer>
                     <DayContainer>
-                        <Date>{forecastDate}</Date>
+                        {this.props.id === 0 && <Date>Today</Date>}
+                        {this.props.id !== 0 && <Date>{forecastDate}</Date>}
                         <HighTemp>{highTemp}&#176;</HighTemp>
                         <LowTemp>{lowTemp}&#176;</LowTemp>
                         <ConditionIcon src={icon}/>

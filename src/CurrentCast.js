@@ -97,7 +97,7 @@ export default class DailyCast extends Component {
 
     static contextType = WeatherContext;
 
-    // Convert extracted time from JSON object to 12-hour format
+    // Convert extracted time from 24-hour format to 12-hour format
     getLastUpdated = (timeDate) => {
         const extractedTime = timeDate.split(' ')[1]
 

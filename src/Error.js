@@ -24,8 +24,6 @@ export default class Error extends Component {
                     {this.props.error}
                 </ErrorMessage>
             )
-        } else {
-            return null;
-        }
+        } return null;
     }
 }

@@ -51,21 +51,7 @@ const DayContainer = styled.div `
 
 export default class DailyCast extends Component {
 
-    static contextType = WeatherContext;
-
-    //Persist weather data in context/state on refresh
-    componentDidMount() {
-        const savedWeatherData = sessionStorage.getItem("data");
-        const cachedWeather = JSON.parse(savedWeatherData);
-
-        if (!cachedWeather) {
-            return;
-        } else {
-            this
-                .context
-                .setWeather(cachedWeather);
-        }
-    }
+    static contextType = WeatherContext; 
 
     render() {
         const weatherRow = this
