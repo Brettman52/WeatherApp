@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import WeatherContext from './weatherContext'
+import {WeatherContext} from './LocalDataProvider'
 import styled from 'styled-components'
 import moment from 'moment'
 import WeatherSelector from './WeatherSelector'
@@ -110,12 +110,12 @@ export default class DailyCast extends Component {
 
     render() {
 
-        const lastUpdated = this.getLastUpdated(this.context.current.last_updated);
-        const currentTemp = Math.trunc(this.context.current.temp_f);
-        const conditionText = this.context.current.condition.text;
-        const highTemp = Math.trunc(this.context.forecast.forecastday[0].day.maxtemp_f);
-        const lowTemp = Math.trunc(this.context.forecast.forecastday[0].day.mintemp_f);
-        const icon = this.context.current.condition.icon;
+        const lastUpdated = this.getLastUpdated(this.context.weather.current.last_updated);
+        const currentTemp = Math.trunc(this.context.weather.current.temp_f);
+        const conditionText = this.context.weather.current.condition.text;
+        const highTemp = Math.trunc(this.context.weather.forecast.forecastday[0].day.maxtemp_f);
+        const lowTemp = Math.trunc(this.context.weather.forecast.forecastday[0].day.mintemp_f);
+        const icon = this.context.weather.current.condition.icon;
 
         return (
             <Wrap>

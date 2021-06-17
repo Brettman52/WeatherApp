@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import WeatherContext from './weatherContext';
+import {WeatherContext} from './LocalDataProvider'
 
 const Town = styled.h2 ` 
     @media (min-width: 650px){
@@ -36,9 +36,9 @@ export default class Location extends Component {
     static contextType = WeatherContext;
 
     render() {
-        const townName = this.context.location.name;
-        const regionName = this.context.location.region;
-        const countryName = this.context.location.country;
+        const townName = this.context.weather.location.name;
+        const regionName = this.context.weather.location.region;
+        const countryName = this.context.weather.location.country;
         return (
             <div>
                 <AreaContainer>

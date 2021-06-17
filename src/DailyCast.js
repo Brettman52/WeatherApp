@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import WeatherContext from './weatherContext'
+import {WeatherContext} from './LocalDataProvider'
 import styled from 'styled-components'
 import WeatherSelector from './WeatherSelector'
 import Card from '@material-ui/core/Card'
@@ -56,6 +56,7 @@ export default class DailyCast extends Component {
     render() {
         const weatherRow = this
             .context
+            .weather
             .forecast
             .forecastday
             .map((_, i) => <Day key={i} id={i}/>)
