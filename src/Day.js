@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import WeatherContext from './weatherContext'
+import {WeatherContext} from './LocalDataProvider'
 
 const WeatherContainer = styled.div `
     
@@ -84,7 +84,7 @@ export default class Day extends Component {
 
     render() {
         const {id} = this.props
-        const {forecastday} = this.context.forecast;
+        const {forecastday} = this.context.weather.forecast;
         const forecastDate = this.truncDate(forecastday[id].date);
         const highTemp = this.truncHigh(forecastday[id].day.maxtemp_f);
         const lowTemp = this.truncLow(forecastday[id].day.mintemp_f);
