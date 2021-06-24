@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import DailyCast from './DailyCast'
 import Search from './Search'
 
@@ -6,7 +6,7 @@ export default class DailyCastPage extends Component {
     render() {
         return (
             <div>
-                <Search />
+                <Search/>
                 <DailyCast/>
             </div>
         )

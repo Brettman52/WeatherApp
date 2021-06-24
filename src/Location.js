@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import {WeatherContext} from './LocalDataProvider'
+import WeatherContext from './weatherContext'
 
 const Town = styled.h2 ` 
     @media (min-width: 650px){

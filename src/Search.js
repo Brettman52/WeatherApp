@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
-import { WeatherContext } from './LocalDataProvider';
+import WeatherContext from './weatherContext'
 
 const CityForm = styled.form `
     text-align: center;
@@ -31,31 +31,21 @@ export default class Search extends Component {
     cityInput = React.createRef()
     cityForm = React.createRef()
 
-
     componentDidMount() {
         this.cityInput.current.focus();
-        console.log("Search comp mounted!")
-    }
-
-    componentDidUpdate(prevProps) {
-        console.log("comp did update!")
     }
 
     onSubmit = e => {
         e.preventDefault()
         this.context.onSearch(this.cityInput.current.value)
         e.target.reset();
-
     }
 
     render() {
         return (
             <div>
                 <CityForm ref={this.cityForm} onSubmit={this.onSubmit}>
-                    <CityInput
-                        ref={this.cityInput}
-                        placeholder="Search city or zip code"
-                    />
+                    <CityInput ref={this.cityInput} placeholder="Search city or zip code"/>
                     <SubmitButton type="submit">
                         GO
                     </SubmitButton>

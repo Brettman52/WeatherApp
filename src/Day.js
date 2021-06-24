@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import {WeatherContext} from './LocalDataProvider'
+import WeatherContext from './weatherContext'
 
 const WeatherContainer = styled.div `
     
@@ -68,26 +68,12 @@ export default class Day extends Component {
         return dateArray.join('')
     }
 
-    // Remove decimal value from high temp
-    truncHigh = (highTemp) => {
-        const newHighTemp = Math.trunc(highTemp);
-
-        return newHighTemp;
-    }
-
-    // Remove decimal value from low temp
-    truncLow = (lowTemp) => {
-        const newLowTemp = Math.trunc(lowTemp);
-
-        return newLowTemp;
-    }
-
     render() {
         const {id} = this.props
         const {forecastday} = this.context.weather.forecast;
         const forecastDate = this.truncDate(forecastday[id].date);
-        const highTemp = this.truncHigh(forecastday[id].day.maxtemp_f);
-        const lowTemp = this.truncLow(forecastday[id].day.mintemp_f);
+        const highTemp = Math.trunc(forecastday[id].day.maxtemp_f);
+        const lowTemp = Math.trunc(forecastday[id].day.mintemp_f);
         const icon = forecastday[id].day.condition.icon;
 
         return (

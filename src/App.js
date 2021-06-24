@@ -8,8 +8,9 @@ import DailyCastPage from './DailyCastPage'
 import Header from './Header'
 import {LocalDataProvider} from './LocalDataProvider'
 import {withRouter} from 'react-router'
-import {WeatherContext} from './LocalDataProvider'
+import WeatherContext from './weatherContext'
 import LoadingScreen from './LoadingScreen'
+import Error from './Error'
 
 const Wrap = styled.div `
   background-image: url(${background});
@@ -39,7 +40,6 @@ class App extends Component {
 
     // If go button has been pressed, go to /current page Otherwise (if the page is
     // being refreshed), stay on the currently displayed page
-
     onWeatherUpdate = () => {
         if (this.state.init === true) {
             this
@@ -58,24 +58,24 @@ class App extends Component {
     render() {
         return (
             <Wrap>
-                <Header/>
+                <Header />
                 <LocalDataProvider
                     search={this.state.search}
                     setInitOnError={this.setInitOnError}
                     init={this.state.init}
                     onWeatherUpdate={this.onWeatherUpdate}
-                    onSearch={this.onSearch}
-                    >
+                    onSearch={this.onSearch}>
                     <WeatherContext.Consumer>
-                        {({weather}) => (
+                        {({weather, error}) => (
                             <Switch>
-                                <Route exact path="/" render={() => <Homepage onSearch={this.onSearch}/>}/> {weather && (
+                                {error && (<Error error={error} />)}
+                                <Route exact path="/" render={() => <Homepage onSearch={this.onSearch} />}/> {weather && (
                                     <Switch>
-                                        <Route path="/current" component={CurrentCastPage}/>
-                                        <Route path="/daily" component={DailyCastPage}/>
+                                        <Route path="/current" component={CurrentCastPage} />
+                                        <Route path="/daily" component={DailyCastPage} />
                                     </Switch>
                                 )}
-                                {!weather && (<LoadingScreen/>)}
+                                {!weather && (<LoadingScreen />)}
                             </Switch>
                         )}
                     </WeatherContext.Consumer>

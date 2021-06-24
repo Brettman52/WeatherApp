@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {WeatherContext} from './LocalDataProvider'
+import WeatherContext from './weatherContext'
 import styled from 'styled-components'
 import moment from 'moment'
 import WeatherSelector from './WeatherSelector'
@@ -104,9 +104,9 @@ export default class DailyCast extends Component {
         return moment(extractedTime, "HH:mm::ss").format("h:mmA");
     }
 
-    // Test code 53646543 to exhibit conditional rendering based on available information
-    // This code will render the following [city, country] instead of [city, state] because 
-    // state info is not available in all countries
+    // Test code 53646543 to exhibit conditional rendering based on available
+    // information This code will render the following [city, country] instead of
+    // [city, state] because state info is not available in all countries
 
     render() {
         const lastUpdated = this.getLastUpdated(this.context.weather.current.last_updated);

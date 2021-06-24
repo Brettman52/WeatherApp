@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import config from './config'
+import {config} from './config'
 import {STORAGE_KEY} from './App'
+import WeatherContext from './weatherContext'
 
-export const WeatherContext = React.createContext({})
+// export const WeatherContext = React.createContext({})
 
 export class LocalDataProvider extends Component {
 
@@ -63,7 +64,8 @@ export class LocalDataProvider extends Component {
         // Did this because the app was getting stuck on the loading page when hitting
         // refresh after data had been fetched App was getting stuck on loading page
         // because upon reload, weather weas cleared from context, thus triggering the
-        // conditional rendering of the <Loading /> component in the App component for the loading page
+        // conditional rendering of the <Loading /> component in the App component for
+        // the loading page
         if (!init && path === '/') 
             return;
         this.fetchWeather()
@@ -71,21 +73,12 @@ export class LocalDataProvider extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        // if((this.props.search && this.props.init) && (this.props.search !==
-        // prevProps.search || this.props.init !== prevProps.init)){
-        // this.fetchWeather() }
-
         if ((this.props.search && this.props.init) && this.props.init !== prevProps.init) {
             this.fetchWeather()
         }
-
-        // if((this.props.search && this.props.init) && (this.props.searchIndexStore !==
-        // prevProps.searchIndexStore || this.props.init !== prevProps.init)){
-        // this.fetchWeather() }
     }
 
     render() {
-
         // Created context value that includes onSearch method so that it can easily be
         // accessed no matter where the <Search /> component is in the component tree
         const contextValue = {
@@ -93,9 +86,8 @@ export class LocalDataProvider extends Component {
             error: this.state.error,
             weather: this.state.weather,
             onSearch: this.props.onSearch
-
         }
-        console.log("Init is....", this.props.init)
+
         return (
             <WeatherContext.Provider value={contextValue}>
                 {this.props.children}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import Search from './Search'
 
 const ErrorMessage = styled.div `
     font-size: 24px;
@@ -17,13 +18,16 @@ const ErrorMessage = styled.div `
 
 export default class Error extends Component {
     render() {
-
         if (this.props.error) {
             return (
-                <ErrorMessage>
-                    {this.props.error}
-                </ErrorMessage>
+                <div>
+                    <Search/>
+                    <ErrorMessage>
+                        {this.props.error}
+                    </ErrorMessage>
+                </div>
             )
-        } return null;
+        }
+        return null;
     }
 }

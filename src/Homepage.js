@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import Error from './Error'
-import {WeatherContext} from './LocalDataProvider'
+import WeatherContext from './weatherContext'
 import Search from './Search'
-
-
 
 export default class Homepage extends Component {
 
@@ -13,7 +10,6 @@ export default class Homepage extends Component {
         return (
             <div>
                 <Search/>
-                <Error error={this.context.error}/>
             </div>
         )
     }
