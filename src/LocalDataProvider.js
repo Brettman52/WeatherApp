@@ -7,6 +7,7 @@ import WeatherContext from './weatherContext'
 
 export class LocalDataProvider extends Component {
 
+    static contextType = WeatherContext
     state = {
         searching: false,
         error: null,
@@ -79,6 +80,7 @@ export class LocalDataProvider extends Component {
     }
 
     render() {
+        console.log(this.context)
         // Created context value that includes onSearch method so that it can easily be
         // accessed no matter where the <Search /> component is in the component tree
         const contextValue = {
