@@ -1,31 +1,30 @@
-import React, {Component, createRef} from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import Error from './Error'
 import {WeatherContext} from './LocalDataProvider'
+import Search from './Search'
 
-const CityForm = styled.form `
-    text-align: center;
-    margin-top: 28px;
-`;
+// const CityForm = styled.form `
+//     text-align: center;
+//     margin-top: 28px;
+// `;
 
-const CityInput = styled.input `
-    border-radius: 5px;
-    opacity: .7;
-    margin-top: 10px;
-    font-size: 18px;
-`;
+// const CityInput = styled.input `
+//     border-radius: 5px;
+//     opacity: .7;
+//     margin-top: 10px;
+//     font-size: 18px;
+// `;
 
-const SubmitButton = styled(Button)`
-&& {
-    height: 23px;
-    background-color: ghostwhite;
-    opacity: .8;
-    margin-left: 2px;
-}
-`;
-
-
+// const SubmitButton = styled(Button)`
+// && {
+//     height: 23px;
+//     background-color: ghostwhite;
+//     opacity: .8;
+//     margin-left: 2px;
+// }
+// `;
 
 export default class Homepage extends Component {
 
@@ -34,18 +33,20 @@ export default class Homepage extends Component {
     cityInput = React.createRef()
 
     //Focus on input field after component mounts
-    componentDidMount() {
-        this.cityInput.current.focus();
-    }
+    // componentDidMount() {
+    //     this.cityInput.current.focus();
+    // }
 
-    onSubmit = e => {
-        e.preventDefault()
-        this.props.onSearch(this.cityInput.current.value)
-    }
+    // onSubmit = e => {
+    //     e.preventDefault()
+    //     this.props.onSearch(this.cityInput.current.value)
+    // }
 
     render() {
         return (
             <div>
+                <Search/>
+{/* 
                 <CityForm onSubmit={this.onSubmit}>
                     <CityInput
                         ref={this.cityInput}
@@ -54,7 +55,7 @@ export default class Homepage extends Component {
                     <SubmitButton type="submit">
                         GO
                     </SubmitButton>
-                </CityForm>
+                </CityForm> */}
                 <Error error={this.context.error}/>
             </div>
         )

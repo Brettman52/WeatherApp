@@ -109,7 +109,6 @@ export default class DailyCast extends Component {
     // state info is not available in all countries
 
     render() {
-
         const lastUpdated = this.getLastUpdated(this.context.weather.current.last_updated);
         const currentTemp = Math.trunc(this.context.weather.current.temp_f);
         const conditionText = this.context.weather.current.condition.text;

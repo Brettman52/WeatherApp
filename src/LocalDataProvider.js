@@ -9,7 +9,7 @@ export class LocalDataProvider extends Component {
     state = {
         searching: false,
         error: null,
-        weather: null
+        weather: null,
     }
 
     formatQueryParams = params => {
@@ -20,10 +20,8 @@ export class LocalDataProvider extends Component {
     }
 
     fetchWeather = async () => {
-        const search = this.props.search
-
-        if(!search) return
-
+        const search = this.props.search;
+  
         const params = {
             q: search,
             days: 3,
@@ -39,35 +37,62 @@ export class LocalDataProvider extends Component {
                 error: `No results found for "${this.props.search}"`,
                 searching: false
             })
+            this.props.setInitOnError();
         }
         else if(!resp.ok) {
             this.setState({
                 error: "Oops! Something went wrong. Please try again later.",
                 searching: false
             })
+            this.props.setInitOnError();
         }
         else {
             this.setState({
                 error: null,
                 weather: await resp.json(),
-                searching: false
+                searching: false,
             })
             localStorage.setItem(STORAGE_KEY, this.props.search)
-            this.props.callback()
+            this.props.callback();
         }
     }
 
+    //fetchWeather used only when page is refreshed (in this instance)
     componentDidMount() {
+        const init = this.props.init;
+        const path = window.location.pathname;
+
+        //Did this because the app was getting stuck on the loading page when hitting refresh after data had been fetched
+        //App was getting stuck on loading page because upon reload, weather weas cleared from context, thus triggering the conditional
+        //rendering in the App component for the loading page
+        if(!init && path === '/') return;
         this.fetchWeather()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.search && this.props.search !== prevProps.search){
+       
+        // if((this.props.search && this.props.init) && (this.props.search !== prevProps.search || this.props.init !== prevProps.init)){
+        //     this.fetchWeather()
+        // }
+
+        if((this.props.search && this.props.init) && this.props.init !== prevProps.init){
             this.fetchWeather()
         }
-    }
 
+        // if((this.props.search && this.props.init) && (this.props.searchIndexStore !== prevProps.searchIndexStore || this.props.init !== prevProps.init)){
+        //     this.fetchWeather()
+        // }
+    }
+    
     render() {
+        const contextValue = {
+            searching: this.state.searching,
+            error: this.state.error,
+            weather: this.state.weather,
+            onSearch: this.props.onSearch
+
+        }
+        console.log("Init is....", this.props.init)
         return (
           <WeatherContext.Provider value={this.state}>
               {this.props.children}
