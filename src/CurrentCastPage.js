@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
 import CurrentCast from './CurrentCast'
-import Homepage from './Homepage'
-
+import Search from './Search'
 export default class CurrentCastPage extends Component {
 
     render() {
         
         return (
             <div>
-                <Homepage />
+                <Search />
                 <CurrentCast/>
             </div>
         )

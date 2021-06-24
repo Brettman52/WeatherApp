@@ -63,7 +63,7 @@ class App extends Component {
                     search={this.state.search}
                     setInitOnError={this.setInitOnError}
                     init={this.state.init}
-                    callback={this.onWeatherUpdate}
+                    onWeatherUpdate={this.onWeatherUpdate}
                     onSearch={this.onSearch}
                     >
                     <WeatherContext.Consumer>
