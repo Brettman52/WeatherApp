@@ -64,8 +64,8 @@ export class LocalDataProvider extends Component {
 
         // Did this because the app was getting stuck on the loading page when hitting
         // refresh after data had been fetched App was getting stuck on loading page
-        // because upon reload, weather weas cleared from context, thus triggering the
-        // conditional rendering of the <Loading /> component in the App component for
+        // because upon reload, weather was cleared from context, thus triggering the
+        // conditional rendering of the <LoadingScreen> component in the App component for
         // the loading page
         if (!init && path === '/') 
             return;
@@ -80,7 +80,6 @@ export class LocalDataProvider extends Component {
     }
 
     render() {
-        console.log(this.context)
         // Created context value that includes onSearch method so that it can easily be
         // accessed no matter where the <Search /> component is in the component tree
         const contextValue = {

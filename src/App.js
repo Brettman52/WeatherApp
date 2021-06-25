@@ -77,7 +77,7 @@ class App extends Component {
                                 )}
                                 {!weather && (<LoadingScreen />)}
                             </Switch>
-                        )}
+                                )}
                     </WeatherContext.Consumer>
                 </LocalDataProvider>
             </Wrap>

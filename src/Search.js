@@ -29,7 +29,6 @@ export default class Search extends Component {
     static contextType = WeatherContext;
 
     cityInput = React.createRef()
-    cityForm = React.createRef()
 
     componentDidMount() {
         this.cityInput.current.focus();
@@ -44,7 +43,7 @@ export default class Search extends Component {
     render() {
         return (
             <div>
-                <CityForm ref={this.cityForm} onSubmit={this.onSubmit}>
+                <CityForm onSubmit={this.onSubmit}>
                     <CityInput ref={this.cityInput} placeholder="Search city or zip code"/>
                     <SubmitButton type="submit">
                         GO
