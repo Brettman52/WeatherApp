@@ -3,8 +3,6 @@ import {config} from './config'
 import {STORAGE_KEY} from './App'
 import WeatherContext from './weatherContext'
 
-// export const WeatherContext = React.createContext({})
-
 export class LocalDataProvider extends Component {
 
     static contextType = WeatherContext
@@ -73,8 +71,8 @@ export class LocalDataProvider extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
-        if ((this.props.search && this.props.init) && this.props.init !== prevProps.init) {
+        debugger
+        if ((this.props.search && this.props.init) && (this.props.init !== prevProps.init)) {
             this.fetchWeather()
         }
     }
