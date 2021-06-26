@@ -30,10 +30,6 @@ export default class Search extends Component {
 
     cityInput = React.createRef()
 
-    componentDidMount() {
-        this.cityInput.current.focus();
-    }
-
     onSubmit = e => {
         e.preventDefault()
         this.context.onSearch(this.cityInput.current.value)
