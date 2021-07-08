@@ -23,7 +23,7 @@ const Wrap = styled.div `
 `
 export const STORAGE_KEY = 'search';
 
-class App extends Component {
+ class App extends Component {
 
     state = {
         search: localStorage.getItem(STORAGE_KEY),
@@ -64,7 +64,8 @@ class App extends Component {
                     setInitOnError={this.setInitOnError}
                     init={this.state.init}
                     onWeatherUpdate={this.onWeatherUpdate}
-                    onSearch={this.onSearch}>
+                    onSearch={this.onSearch}
+                    pathname={this.props.location.pathname}>
                     <WeatherContext.Consumer>
                         {({weather, error}) => (
                             <Switch>

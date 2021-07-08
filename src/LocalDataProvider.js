@@ -58,7 +58,7 @@ export class LocalDataProvider extends Component {
     //fetchWeather used only when page is refreshed (in this instance)
     componentDidMount() {
         const init = this.props.init;
-        const path = window.location.pathname;
+        const path = this.props.pathname;
 
         // Did this because the app was getting stuck on the loading page when hitting
         // refresh after data had been fetched App was getting stuck on loading page
@@ -71,7 +71,6 @@ export class LocalDataProvider extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        debugger
         if ((this.props.search && this.props.init) && (this.props.init !== prevProps.init)) {
             this.fetchWeather()
         }
