@@ -48,7 +48,6 @@ const WeatherContext = React.createContext({
             ]
         }
     },
-    test: "test",
     searchInit: false,
     searching: false,
     error: null,
